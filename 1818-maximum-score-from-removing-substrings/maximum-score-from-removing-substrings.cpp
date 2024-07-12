@@ -40,3 +40,23 @@ public:
         return inputString;
     }
 };
+//  string removeSubstring(string& s, string& matchStr) {
+//         stack<char> st;
+
+//         for (char &ch : s) {
+//             if (ch == matchStr[1] && !st.empty() && st.top() == matchStr[0]) {
+//                 st.pop();
+//             } else {
+//                 st.push(ch);
+//             }
+//         }
+
+//         string remainStr;
+//         while (!st.empty()) {
+//             remainStr.push_back(st.top());
+//             st.pop();
+//         }
+//         reverse(remainStr.begin(), remainStr.end());
+//         return remainStr;
+//     }
+// };
