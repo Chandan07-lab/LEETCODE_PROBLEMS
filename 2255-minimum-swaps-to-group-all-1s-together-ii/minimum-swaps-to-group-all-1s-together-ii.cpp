@@ -36,7 +36,7 @@ public:
 //     if(nums[j%n]==1){
 //         currcount++;
 //     }
-//     if(j-i+1>currcount){
+//     if(j-i+1>cone){
 //         currcount-=nums[i%n];
 //         i++;
 //     }
