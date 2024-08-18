@@ -28,3 +28,40 @@ public:
         return t[n];
      }
 };
+
+// unordered_map<int,bool> mp;
+// bool isu(int n){
+//     if(n<=0)
+//     return false;
+
+//     if(n==1)
+//     return true;
+
+//     if(mp.find(n)!=mp.end())
+//     return mp[n];
+
+//     if(n%2==0 && isu(n/2))
+//     return mp[n]= true;
+
+//     else if((n%3 && isu(n/3)))
+//     return mp[n]=true;
+
+//     else if((n%5 && isu(n/5)))
+//     return mp[n]=true;
+
+
+//     return mp[n]=false;
+// }
+// int nthUglyNumber(int n){
+//     mp.clear();
+//     int num=1;
+//     while(n>0){
+//         if(isUgly(num)){
+//             n--;
+//         }
+//         num++;
+//     }
+//     return num-1;
+// }
+
+
