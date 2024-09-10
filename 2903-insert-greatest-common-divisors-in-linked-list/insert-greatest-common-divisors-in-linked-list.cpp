@@ -14,17 +14,49 @@ public:
         if(!head||!head->next){
             return head;
         }
-        ListNode *curr=head;
-        ListNode *nextn=head->next;
+        // ListNode *curr=head;
+        // ListNode *nextn=head->next;
 
-        while(nextn){
-            ListNode* temp=new ListNode(__gcd(curr->val,nextn->val));
-            curr->next=temp;
-            temp->next=nextn;
-            curr=nextn;
-            nextn=nextn->next;
+        // while(nextn){
+        //     ListNode* temp=new ListNode(__gcd(curr->val,nextn->val));
+        //     curr->next=temp;
+        //     temp->next=nextn;
+        //     curr=nextn;
+        //     nextn=nextn->next;
 
-        }
+        // }
+        ListNode* temp= insertGreatestCommonDivisors(head->next);
+
+        ListNode *gcdn=new ListNode(__gcd(head->val,head->next->val));
+
+        gcdn->next=temp;
+        head->next=gcdn;
+
+
         return head;
+
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
