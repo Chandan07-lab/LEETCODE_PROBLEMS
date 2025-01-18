@@ -10,7 +10,7 @@ public:
             power[i]=(power[i-1]*2)%M;
         }
         for(int i=0;i<n;i++){
-            result=(result +(long long) nums[i] *((power[i]-power[n-i-1])+M)%M)%M;
+            result=(result +(long long) nums[i] *(power[i]-power[n-i-1]))%M;
         }
 
         return result;
