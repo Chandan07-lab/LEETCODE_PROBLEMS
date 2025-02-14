@@ -58,10 +58,10 @@ void uni(int i,int j){
 int removeStones(vector<vector<int>>& stones){
     n=stones.size();
 parent.resize(n);
-rank.resize(n);
+rank.resize(n,0);
 for(int i=0;i<n;i++){
     parent[i]=i;
-    rank[i]=1;
+    // rank[i]=1;
 }
 for(int i=0;i<n;i++){
     for(int j=i+1;j<n;j++){
