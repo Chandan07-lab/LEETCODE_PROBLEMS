@@ -1,21 +1,37 @@
 class Solution {
 public:
-    int coinChangeHelper(vector<int>& coins, int amount,int dp[10006]) {
-        if (amount == 0)
-            return 0;
-        if(dp[amount] !=-1) return dp[amount];
-        int ans = INT_MAX;
-        for (int coin : coins) {
-            if (amount - coin >= 0)
-                ans = min(ans + 0LL, coinChangeHelper(coins, amount - coin,dp) + 1LL);
+int dp[13][10001];
+int solve(vector<int>&coins,int i,int t){
+    if(i==0){
+        if(t%coins[i]==0){
+            return t/coins[i];
+        }else{
+            return 1e9+7;
         }
-
-        return dp[amount] = ans;
     }
-    int coinChange(vector<int>& coins, int amount) { 
-        int dp[10006];
+    if(dp[i][t]!=-1){
+        return dp[i][t];
+    }
+
+    int nottake=solve(coins,i-1,t);
+    int take=INT_MAX;
+    if(coins[i]<=t){
+        take=1+solve(coins,i,t-coins[i]);
+    }
+
+    return dp[i][t]=min(take,nottake);
+}
+
+
+
+    int coinChange(vector<int>& coins, int amount) {
+        int n=coins.size();
         memset(dp,-1,sizeof(dp));
-        int ans =  coinChangeHelper(coins, amount,dp); 
-        return ans == INT_MAX? -1: ans;
+        int ans=solve(coins,n-1,amount);
+        if(ans>=1e9+7){
+            return -1;
+        }else{
+            return ans;
+        }
     }
 };
