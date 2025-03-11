@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        unordered_map<int,int>mp;
+        unordered_map<int,int>mp(26);
         for(auto str:s){
             mp[str]++;
         }
