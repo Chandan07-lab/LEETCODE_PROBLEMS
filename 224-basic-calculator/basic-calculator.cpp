@@ -1,39 +1,39 @@
-
 class Solution {
 public:
-    int solve(const string& s, int& i) { 
-        int res = 0;
-        int sign = 1; 
-        int number = 0;
-
-        while (i < s.size()) {
-            char c = s[i];
-            if (c == '+') {
-                res += sign * number;
-                number = 0;
-                sign = 1;
-            } else if (c == '-') {
-                res += sign * number;
-                number = 0;
-                sign = -1; 
-            } else if (isdigit(c)) {
-                number = number * 10 + (c - '0'); 
-            } else if (c == '(') {
-                i++; 
-                number = solve(s, i); 
-            } else if (c == ')') {
-                res += sign * number; 
-                return res; 
-            }
-            i++; 
-        }
-        res += sign * number; 
-        return res;
-    }
-
     int calculate(string s) {
-        int i = 0; 
-        return solve(s, i);
+        int n=s.length();
+        int result=0;
+        int sign=1;
+        int number =0;
+        stack<int>st;
+        for(int i=0;i<n;i++){
+            if(isdigit(s[i])){
+                number=number*10+(s[i]-'0');
+            }else if(s[i]=='+'){
+                result+=sign*number;
+                number=0;
+                sign=1;
+            }else if(s[i]=='-'){
+                result+=sign*number;
+                number=0;
+                sign=-1;
+            }else if(s[i]=='('){
+                st.push(result);
+                st.push(sign);
+                result=0;
+                number=0;
+                sign=1;
+            }else if(s[i]==')'){
+                result+=sign*number;
+                number=0;
+                int top=st.top();st.pop();
+                result*=top;
+                top=st.top();st.pop();
+                result+=top;
+            }
+        }
+        result+=(sign*number);
+
+        return result;
     }
 };
-
