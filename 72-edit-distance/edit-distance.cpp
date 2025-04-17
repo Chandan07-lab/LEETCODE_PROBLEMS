@@ -1,35 +1,28 @@
 class Solution {
 public:
-    int minDistance(string str1, string str2) {
-        int m = str1.length();
-        int n = str2.length();
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1));
+int solve(int i,int j,vector<vector<int>>&dp,int m,int n,string w1,string w2){
+    if(i<0){
+        return j+1;
+    }
+    if(j<0){
+        return i+1;
+    }
 
-        // Fill dp[][] in bottom-up manner
-        for (int i = 0; i <= m; i++) {
-            for (int j = 0; j <= n; j++) {
-                // If the first string is empty, insert all characters of the second string
-                if (i == 0) {
-                    dp[i][j] = j; // Min. operations = j
-                }
-                // If the second string is empty, remove all characters of the first string
-                else if (j == 0) {
-                    dp[i][j] = i; // Min. operations = i
-                }
-                // If the last characters are the same, ignore the last char and recur for the remaining string
-                else if (str1[i - 1] == str2[j - 1]) {
-                    dp[i][j] = dp[i - 1][j - 1];
-                }
-                // If the last character is different, consider all possibilities and find the minimum
-                else {
-                    dp[i][j] = 1 + min({dp[i][j - 1],    // Insert
-                                        dp[i - 1][j],    // Remove
-                                        dp[i - 1][j - 1] // Replace
-                                       });
-                }
-            }
-        }
+    if(dp[i][j]!=-1){
+        return dp[i][j];
+    }
 
-        return dp[m][n];
+    if(w1[i]==w2[j]){
+        return dp[i][j]=solve(i-1,j-1,dp,m,n,w1,w2);
+    }
+
+    return dp[i][j]=1+min({solve(i-1,j-1,dp,m,n,w1,w2),solve(i-1,j,dp,m,n,w1,w2),solve(i,j-1,dp,m,n,w1,w2)});
+}
+    int minDistance(string word1, string word2) {
+        int m=word1.size();
+        int n=word2.size();
+        vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
+        return solve(m-1,n-1,dp,m,n,word1,word2);
+        
     }
 };
